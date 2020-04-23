@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Display Webcam Stream</title>
+
+    <style>
+        html, body, #container{
+            height:100%;
+            width:100%;
+            box-sizing: border-box;
+            padding:0;
+            margin:0;
+            overflow: hidden;
+        }
+        #container {
+            margin: 0px auto;
+            border: 10px #333 solid;
+        }
+
+        #videoElement {
+            background-color: #666;
+            height:100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <video autoplay="true" id="videoElement">
+
+        </video>
+    </div>
+    <script>
+        var video = document.querySelector("#videoElement");
+
+        if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+            video.srcObject = stream;
+            })
+            .catch(function (err0r) {
+            console.log("Something went wrong!");
+            });
+        }
+    </script>
+</body>
+
+</html>
